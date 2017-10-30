@@ -59,10 +59,21 @@
 		<servlet-name>HomePage</servlet-name>
 		<jsp-file>/homepage.jsp</jsp-file>
 	</servlet>
+  	<servlet>
+  		<description>
+  		</description>
+  		<display-name>EmailValidation</display-name>
+  		<servlet-name>EmailValidation</servlet-name>
+  		<servlet-class>com.bridgeit.Controller.EmailValidation</servlet-class>
+  	</servlet>
 	
 	<servlet-mapping>
 	<servlet-name>HomePage</servlet-name>
 	<url-pattern>/homepage</url-pattern>
+	</servlet-mapping>
+	<servlet-mapping>
+		<servlet-name>EmailValidation</servlet-name>
+		<url-pattern>/EmailValidation</url-pattern>
 	</servlet-mapping>
   <filter>
   <filter-name>cache</filter-name>
@@ -74,6 +85,7 @@
    <url-pattern>/login</url-pattern>
   <url-pattern>/homepage</url-pattern>
   </filter-mapping>
+  
   
 
   

@@ -27,22 +27,26 @@
 
 				<div class="form-group">
                 <label for="email"><span class="req" style="color:red;">* </span> Email </label> 
-                    <input class="form-control" type="text" name="email" id = "email"  onchange="email_validate(this.value)" placeholder="Enter email" />   
-                  		<p><span class="emsgEmail hidden" >Please Enter a Valid email!</span></p>  
+                    <input class="form-control" type="text" name="email" id = "email" placeholder="Enter email" />   
+                  		<p><span class="emsgEmail hidden" >Please Enter a Valid email!</span></p>
+                  		<p><span class="emsgExit hidden" >Email already taken!</span></p>   
             	</div>
 				 <div class="form-group">
                 	<label for="password"><span class="req" style="color:red;">* </span> Password </label>
-                    <input  name="password" type="password" class="form-control inputpass" minlength="8"  id="pass" name="pass" onkeyup="checkPass(); return false;" placeholder="Enter password"/> </p>
+                    <input  name="password" type="password" class="form-control inputpass" minlength="8"  id="pass" name="pass" placeholder="Enter password"/> </p>
+                 	<p><span class="emsgPass hidden" >Password must contain characters!</span></p>  
                  </div>
                  
                  <div class="form-group">
                  	<label for="password"><span class="req" style="color:red;">* </span> Confirm-Password </label>
-					<input type="password" class="form-control" placeholder="Retype Password" name="cpassword" id="cpassword" />
+					<input type="password" class="form-control" placeholder="Retype Password" name="cpass" id="cpass" />
+					<p><span class="cpass hidden" >Password didn't matched</span></p>  
 				</div>
                  
 				<div class="form-group">
             	<label for="phonenumber"><span class="req" style="color:red;">* </span> Phone Number </label>
-                    <input type="number" name="mobile" id="mobile" class="form-control phone" maxlength="13" min="0" onkeyup="validatephone(this);" placeholder="Enter Phone Number"/> 
+                    <input type="number" name="mobile" id="mobile" class="form-control phone" maxlength="13" min="0" placeholder="Enter 10 digit mobile number"/> 
+            		<p><span class="mobile hidden" >Enter valid mobile number!</span></p>  
             	</div>
 				
 				<br>

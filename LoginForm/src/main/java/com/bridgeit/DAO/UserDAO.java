@@ -99,13 +99,10 @@ public class UserDAO
 				
 				i=(int) session.save(userDetials);//persisting the object  
 			      
-			    transaction.commit();//transaction is committed  
-			/*	prepareStatement.setString(1, user.getName());
-				prepareStatement.setString(2, user.getEmail());
-				prepareStatement.setString(3, user.getPassword());
-				prepareStatement.setString(4, user.getMobile());
-				prepareStatement.executeUpdate();*/
+			    transaction.commit();
+			    session.close();
 			}
+			
 			//setting values to attribute
 			
 		}
@@ -113,7 +110,36 @@ public class UserDAO
 		{
 			e.printStackTrace();
 		}
+		finally{
+			
+		}
 		
 		return i;
 	}
+	public boolean isExits(String availEmail) 
+	{
+		boolean exist = false;
+		try{
+			
+			session=sessionFactory.openSession();			
+			Query query = session.createQuery("From UserBean where email=:email");
+			
+			query.setParameter("email", availEmail);
+			List<UserBean> list = query.getResultList();
+			System.out.println(list.get(0));
+			
+			if(!list.isEmpty())
+			{
+				exist=true;
+			}
+			session.close();
+		}
+		catch(Exception e)
+		{
+			e.printStackTrace();
+		}
+		return exist;
+		
+	}
+	
 }

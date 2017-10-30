@@ -24,7 +24,7 @@
     line-height: 20px;
 }
 
-.emsgName,.emsgEmail{
+.emsgName,.emsgEmail,.emsgPass,.cpass,.mobile,.emsgExit{
     color: red;
 }
 .hidden {

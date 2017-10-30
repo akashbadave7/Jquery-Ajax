@@ -1,89 +1,90 @@
-$(document).ready(function()
-		{
-			
-			$('#name').blur(function(){
-			var name = $('#name').val();
-			validateName(name);
+$(document).ready(function(){
+		
+		$('#name').blur(function(){
+			validateName();
          });
 			
-			/*$('#email').on('keypress keydown keyup',function(){*/
-			$('#email').blur(function(){
-            $('#email').filter(function(){
-               var mail=$('#email').val();
-               validateEmail(mail);
-               checkISExit();
-            });
+			
+		$('#email').blur(function(){
+			$('#email').filter(function(){
+				validateEmail();
+			});
         });
+			
 		$('#pass').blur(function(){
-			var password = $('#pass').val();
-			if(password.length<8)
-				{
-					$('.emsgPass').removeClass('hidden');
-                 	$('.emsgPass').show();
-				}
-			else
-				{
-					$('.emsgPass').addClass('hidden');
-				}
+			validatePass()
 		});
 		
 		$('#cpass').blur(function(){
+			validateCPaas();
+		});
+		
+		$('#mobile').blur(function(){
+			validateMob();
+		})
+		
+		function validateName()
+		{
+			var valid = true;
+			$("#emsgName").text("");
+			var $regexname=/^[a-zA-Z]{3,}/;
+			if (!($('#name').val()).match($regexname)) 
+			{
+				$("#emsgName").text("Please Enter a Valid Name!");
+				valid=false;
+            }
+			return valid;
+		}
+		
+		function validateEmail()
+		{
+				var valid = true;
+			   $("#emsgEmail").text("");
+			   var emailReg = /^([\w-\.]+@([\w-]+\.)+[\w-]{2,4})?$/;
+               if( !emailReg.test( $('#email').val())) 
+               {
+            	   $("#emsgEmail").text("Please Enter a Valid Email!");
+            	   valid=false;
+               } 
+               return valid;
+		}
+		function validatePass()
+		{
+			 $("#emsgPass").text("");
+			if(($('#pass').val()).length<8)
+			{
+				$('#emsgPass').text("Password must contain 8 characters!");
+			}
+		}
+		function validateCPaas()
+		{
+			var valid = true;
+			$("#emsgcpass").text("");
 			var pass = $('#pass').val();
 			var cpass = $('#cpass').val();
 			if(pass != cpass)
 				{
-					$('.cpass').removeClass('hidden');
-					$('.cpass').show();
+					$('#emsgcpass').text("Password didn't matched");
+					valid=false;
 				}
-			else
-				{
-					$('.cpass').addClass('hidden');
-				}
-		});
-		
-		$('#mobile').blur(function(){
+			return valid;
+		}
+		function validateMob()
+		{
+			var valid= true;
 			var mob = $('#mobile').val();
+			$("#emsgmob").text("");
 			if( mob.length!=10)
 				{
-				 	$('.mobile').removeClass('hidden');
-                 	$('.mobile').show();
+					$('#emsgmob').text("Enter valid 10 digit mobile number!");
+					valid=false;
 				}
-			else
-				{
-	               
-					$('.mobile').addClass('hidden');
-				}
-		})
-		function validateName(name)
-		{
-			var $regexname=/^[a-zA-Z]{3,}/;
-			if (!name.match($regexname)) {
-	              // there is a mismatch, hence show the error message
-	                 $('.emsgName').removeClass('hidden');
-	                 $('.emsgName').show();
-	             }
-	           else{
-	                // else, do not display message
-	                $('.emsgName').addClass('hidden');
-	               }
+			return valid;
 		}
-		function validateEmail(mail)
-		{
-			   var emailReg = /^([\w-\.]+@([\w-]+\.)+[\w-]{2,4})?$/;
-               if( !emailReg.test( mail ) ) 
-               {
-            	   $('.emsgEmail').removeClass('hidden');
-            	   $('.emsgEmail').show();
-               } 
-               else 
-               {
-            	$('.emsgEmail').addClass('hidden');
-               }
-               
-		}
+		
 		function checkISExit()
 		{
-			var flag=true;
+			var flag;
 			$.ajax({
 				type : "post",
 				url : "EmailValidation",
@@ -96,37 +97,53 @@ $(document).ready(function()
 		        },
 		        error:function(error){
 		            console.log(error);
-		            console.log("Inside false");
-		            
-
 		        }
 			});
 			console.log(flag);
-			if(flag==false){
-				$('.emsgExit').removeClass('hidden');
-         	   	$('.emsgExit').show();
+			if(flag==false)
+			{
+				$("#emsgEmail").text("Email already taken!");
 			}
-			else{
-				$(".emsgExit").addClass('hidden');
+			else
+			{
+			$("#emsgEmail").text("");
 			}
+			return flag;
+		}
+		
+		function formValidate()
+		{
+			var valid= true;
+			if(!validateName()){
+					valid=false;
+				}
+			if(!validateEmail()){
+				valid=false;
+			}else{
+				if(checkISExit()){
+					valid=false;
+					}
+			}
+			if(!validatePass()){
+				valid=false;
+			}
+			if(!validateCPaas()){
+				valid=false;
+			}
+			if(!validateMob()){
+				valid=false;
+			}
+			return valid;
 		}
 		
 		$("#button").click(function(event){
-			var form_data=$("#register-form").serializeArray();
-			var error_free=true;
-			for (var input in form_data)
-			{
-				var element=$("#register-form_"+form_data[input]['name']);
-				var valid=element.hasClass("valid");
-				var error_element=$("span", element.parent());
-				if (!valid){error_element.removeClass("error").addClass("error_show"); error_free=false;}
-				else{error_element.removeClass("error_show").addClass("error");}
+			if(formValidate()){
+				return;
 			}
-			if (!error_free){
-				event.preventDefault(); 
-			}
-			else{
-				alert('No errors: Form will be submitted');
-			}
+			else
+				{
+				event.preventDefault();
+				}
 		});
+		
 	});

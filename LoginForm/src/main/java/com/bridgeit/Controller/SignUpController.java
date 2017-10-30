@@ -42,11 +42,11 @@ public class SignUpController extends HttpServlet
 		user.setEmail(email);
 		user.setPassword(pass);
 		user.setMobileNumber(mobile);
-		boolean valid = validate.signUpValidator(user,session);
+		/*boolean valid = validate.signUpValidator(user,session);*/
 		
 		int i = db.insertUser(user);
-		if(valid==true)
-		{
+		/*if(valid==true)
+		{*/
 			if(i>0)
 			{
 				logger.info("Signup successfull");
@@ -63,10 +63,10 @@ public class SignUpController extends HttpServlet
 			    response.sendRedirect("signup");
 				return;
 			}
-		}
+		/*}
 		else
 		{
 			response.sendRedirect("signup");
-		}
+		}*/
 	}
 }

@@ -50,11 +50,13 @@ $(document).ready(function(){
 		}
 		function validatePass()
 		{
-			 $("#emsgPass").text("");
+			var valid = true;
+			$("#emsgPass").text("");
 			if(($('#pass').val()).length<8)
 			{
 				$('#emsgPass').text("Password must contain 8 characters!");
 			}
+			return valid;
 		}
 		function validateCPaas()
 		{
@@ -106,7 +108,7 @@ $(document).ready(function(){
 			}
 			else
 			{
-			$("#emsgEmail").text("");
+				$("#emsgEmail").text("");
 			}
 			return flag;
 		}
@@ -120,7 +122,7 @@ $(document).ready(function(){
 			if(!validateEmail()){
 				valid=false;
 			}else{
-				if(checkISExit()){
+				if(!checkISExit()){
 					valid=false;
 					}
 			}
@@ -136,13 +138,14 @@ $(document).ready(function(){
 			return valid;
 		}
 		
-		$("#button").click(function(event){
+		$("#submit").click(function(event){
 			if(formValidate()){
 				return;
 			}
 			else
 				{
 				event.preventDefault();
+				
 				}
 		});
 		

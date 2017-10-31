@@ -43,18 +43,15 @@ public class EmailValidation extends HttpServlet {
 			boolean flag = user.isExits(availEmail);
 			System.out.println(flag);
 			if (flag) {
-	            /*out.print("{\"valid\" : false }");*/
 	            json.put("valid", false);
-	            /*System.out.println("false");*/
 	        }
 	        else {
 	            /*out.print("{\"valid\" : true }");*/
 	            json.put("valid", true);
-	            /*System.out.println("true");*/
+	           /* System.out.println("true");*/
 	        }
-		
-		
 		}
+		System.out.println(json);
 		out.println(json);
 	}
 }

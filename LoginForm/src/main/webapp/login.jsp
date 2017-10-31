@@ -29,9 +29,7 @@
 
 
 </style> -->
-<script type="text/javascript">
-
-</script>
+<script src="js/signUp.js"></script>
 </head>
 <body class = "body">
 	
@@ -59,8 +57,9 @@
 				<div id="errUser"></div>  
 			</div>
 			<br>
-				      <button type="submit" class="btn btn-primary" style="margin-left: 20%; width:80px"><b>Login</b></button>
+				      <button type="submit" id="submit" class="btn btn-primary" style="margin-left: 20%; width:80px"><b>Login</b></button>
 				      <a  class="btn btn-primary" href="signup" role="button"  style="margin-right: 20%; width:80px"><b>SignUp</b></a>
+					<p><span id ="errmsg"></span></p>
 			<br>
 		</div>
 			 

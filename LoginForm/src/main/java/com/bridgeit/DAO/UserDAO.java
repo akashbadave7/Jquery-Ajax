@@ -126,13 +126,12 @@ public class UserDAO
 			
 			query.setParameter("email", availEmail);
 			List<UserBean> list = query.getResultList();
-			System.out.println(list.get(0));
 			
 			if(!list.isEmpty())
 			{
 				exist=true;
 			}
-			session.close();
+			
 		}
 		catch(Exception e)
 		{

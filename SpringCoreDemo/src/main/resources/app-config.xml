@@ -1,0 +1,32 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<beans xmlns="http://www.springframework.org/schema/beans"
+    xmlns:xsi="http://www.w3.org/2001/XMLSchema-instance" xmlns:context="http://www.springframework.org/schema/context"
+    xsi:schemaLocation="http://www.springframework.org/schema/beans http://www.springframework.org/schema/beans/spring-beans-4.0.xsd
+                            http://www.springframework.org/schema/context http://www.springframework.org/schema/context/spring-context-4.0.xsd">
+ 
+  
+  	<bean id="addrs" class="com.bridgeit.DependancyInjection.Address">
+        <property name="city" value="Belgaum"/>
+         <property name="state" value="Karnataka"/>
+          <property name="zipCode" value="590003"/>
+    </bean>
+    
+    
+    <bean id="emp1" class="com.bridgeit.SpringCoreDemo.Employee" init-method="myInit" destroy-method="myDestroy">
+        <property name="eid" value="12"/>
+         <property name="ename" value="Akash"/>
+          <!-- <property name="address" value="Belgaum"/> -->
+          <!--Constructor injection  -->
+          <!-- <constructor-arg ref="addrs"></constructor-arg> -->
+          <!-- setter injection -->
+          <property name="address" ref="addrs"></property>
+          
+    </bean>
+<!--     <bean id="emp2" class="com.bridgeit.SpringCoreDemo.Employee" >
+        <property name="eid" value="13"/>
+         <property name="ename" value="pavan"/>
+          <property name="address" value="Banglore"/>
+    </bean>
+  -->
+ 
+</beans>

@@ -1,9 +1,13 @@
-package com.bridegit.Type2;
+package com.bridegit.Type3;
 
 import java.util.Scanner;
 
 public class PrintableFactory {  
-	public static Printable getPrintable(){  
+	
+	//non-static factory method  
+
+	public Printable getPrintable()
+	{  
 		Scanner scan = new Scanner(System.in);
 		System.out.println("Enter option A or B");	
 		if(scan.next().charAt(0)=='A')		
